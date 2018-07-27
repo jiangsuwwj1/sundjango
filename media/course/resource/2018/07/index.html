@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>移动</title>
+<style type="text/css">
+ form{background:#CCCCCC;
+  width:500px;
+ }
+ td{width:150px;
+ height:150px;
+ text-align:center;
+ }
+ select{ width:100px;
+ height:180px;
+ 
+ }
+ td div{width:100px;
+ height:150px;
+ text-align:center;
+ }
+ input{width:100px;
+ height:30px;
+ margin:5px;
+ }
+</style>
+</head>
+
+<body>
+<form id="myForm" name="myForm" method="post" action="#">
+  <table>
+  <tr>
+   <td>
+    <select name="listLeft" id="listLeft" size="10" multiple="multiple"  ondblclick="removeOne(listLeftnode,listRightnode);" >
+      <option value="a">a</option>
+      <option value="b">b</option>
+      <option value="c">c</option>
+      <option value="d">d</option>
+      <option value="e">e</option>
+      <option value="f">f</option>
+      <option value="g">g</option>
+    </select>   </td>
+ <td>
+  <div>
+  <input type="button" name="allRightMove" id="allRightMove" value=" >> " onclick="removeAll(listLeftnode,listRightnode);"/><br />
+   <input type="button" name="rightMove" id="rightMove" value="  > "  onclick="removeOne(listLeftnode,listRightnode);"/><br />
+   <input type="button" name="leftMove" id="leftMove" value="  < "    disabled="disabled" onclick="removeOne(listRightnode,listLeftnode);" /><br />
+   <input type="button" name="allLeftMove" id="allLeftMove" value=" << "  disabled="disabled"  onclick="removeAll(listRightnode,listLeftnode);" />
+  </div>
+   </td>
+ <td><select name="listRight" size="10" multiple="multiple"  id="listRight" ondblclick="removeOne(listRightnode,listLeftnode);">
+     </select>
+ </td>
+ </tr>
+  </table>
+<script type="text/javascript">
+ var listLeftnode = document.getElementById("listLeft");
+ var listRightnode = document.getElementById("listRight");
+ var btallRightMove = document.getElementById("allRightMove");
+ var btRightMove = document.getElementById("rightMove");
+ var btLeftMove = document.getElementById("leftMove");
+ var btallLeftMove = document.getElementById("allLeftMove");
+ 
+ function isEmpty()
+ {
+  if(listLeftnode.options.length<1)
+  {
+   btallRightMove.setAttribute("disabled","disabled");
+   btRightMove.setAttribute("disabled","disabled");
+  }
+  else
+  {
+   btallRightMove.removeAttribute("disabled");
+   btRightMove.removeAttribute("disabled");  
+  } 
+  if(listRightnode.options.length<1)
+  {
+   btallLeftMove.setAttribute("disabled","disabled");
+   btLeftMove.setAttribute("disabled","disabled");
+  }
+  else
+  { 
+   btallLeftMove.removeAttribute("disabled");
+   btLeftMove.removeAttribute("disabled");   
+  } 
+ }
+ 
+ function removeOne(beginList, endList)
+ {
+  var flag=false;
+  for(i=beginList.options.length-1; i>=0; i--)
+  { 
+   if(beginList.options[i].selected)
+   {   flag=true;
+    var tempOption = beginList.options[i];
+    beginList.remove(i);
+    endList.add(tempOption, endList.last);
+   }
+  }
+  if(!flag)
+  {
+   alert("您没有选择，不能移动！！");
+  }
+  isEmpty();
+    
+ }
+ 
+ function removeAll(beginList,endList)
+ {
+  for(i=beginList.options.length-1; i>=0; i--)
+  {   
+   var tempOption = beginList.options[i];
+   beginList.remove(i);
+   endList.add(tempOption, endList.first);
+  }
+   isEmpty();
+ }
+</script>
+</form>
+</body>
+</html>
