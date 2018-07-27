@@ -17,6 +17,7 @@ EMAIL配置改为自己email的地址
 3,生成数据表
 
 python manager.py makemigrations
+
 python manager.py migrate
 
 4, 运行
