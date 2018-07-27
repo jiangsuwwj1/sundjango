@@ -9,6 +9,7 @@ pip install -r requirement.txt
 2,更改配置
 
 sundjango/settings.py中
+
 DATABASES配置改为自己mysql地址
 EMAIL配置改为自己email的地址
 
