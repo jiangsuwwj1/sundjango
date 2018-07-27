@@ -11,6 +11,7 @@ pip install -r requirement.txt
 sundjango/settings.py中
 
 DATABASES配置改为自己mysql地址
+
 EMAIL配置改为自己email的地址
 
 3,生成数据表
